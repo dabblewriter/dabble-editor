@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Test editor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #eee;
+      font-family: sans-serif;
+      color: #444;
+      margin: 0;
+    }
+    body > .ProseMirror {
+      flex: 1 1 auto;
+      outline: none;
+    }
+    .page {
+      display: flex;
+      flex-direction: column;
+      width: 816px;
+      height: 1056px;
+      padding: 96px;
+      margin: 20px auto;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-radius: 1px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    }
+    .scene + .scene::before {
+      display: block;
+      content: ' ***';
+      letter-spacing: 2em;
+      text-align: center;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene page"><p>A scene</p></div>
+  <div class="chapter page">
+    <h2 class="title">Chapter 1</h2>
+    <div class="scene">
+      <p>A dark and dreary night fell upon the castle.</p>
+    </div>
+    <div class="scene"></div>
+  </div>
+  <div class="page chapter">
+    <h2 class="title">Chapter 2</h2>
+    <div class="scene"></div>
+  </div>
+</body>
+<script src="main.js"></script>
+</html>
