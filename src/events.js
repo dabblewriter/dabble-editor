@@ -10,14 +10,14 @@ export class EventDispatcher {
    * Adds an event listener
    */
   on(type, listener) {
-    getEventListeners(this, type).push(listener);
+    getEventListeners(this, type).add(listener);
   }
 
   /**
    * Removes a previously added event listener
    */
   off(type, listener) {
-    getEventListeners(this, type).remove(listener);
+    getEventListeners(this, type).delete(listener);
   }
 
   /**
@@ -37,7 +37,7 @@ export class EventDispatcher {
    */
   dispatchEventCheck(type /*[, args]*/) {
     var args = slice.call(arguments, 1);
-    return getEventListeners(this, type).every(function(listener) {
+    return Array.from(getEventListeners(this, type).values()).every(function(listener) {
       return listener.apply(this, args) !== false;
     }, this);
   }
@@ -54,7 +54,7 @@ function getEventListeners(obj, type) {
     dispatcherEvents.set(obj, events);
   }
   if (!events.hasOwnProperty(type)) {
-    events[type] = [];
+    events[type] = new Set();
   }
   return events[type];
 }
